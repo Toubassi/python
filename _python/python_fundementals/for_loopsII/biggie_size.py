@@ -9,3 +9,8 @@ def biggie_size(num):
       new.append(x)
   return new
 print(biggie_size(num))
+
+for x in num:
+  if x > 0:
+    x == 'Big'
+  
