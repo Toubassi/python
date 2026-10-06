@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Playground</title>
+  </head>
+  <body>
+    <h1>Welcome!</h1>
+    <div class="container">
+      {% for i in range(box_count) %}
+      <div class="box" style="background-color: {{box_color}};"></div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
