@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <link
+    rel="stylesheet"
+    href="{{url_for('static', filename='CSS/style.css')}}"
+  />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User's Submission</title>
+  </head>
+  <body>
+    <h1>Show Page</h1>
+    <div class="result">
+      <div>
+      <h3>Submitted information:</h3>
+      <p>Name: {{ name_on_template }}</p>
+      <p>Location: {{ location_on_template }}</p>
+      <p>Language: {{ language_on_template }}</p>
+      <p>Comment: {{ comment_on_template }}</p>
+      </div>
+      <div class="btn">
+      <button>Go Back</button>
+    </div>
+  </body>
+</html>
