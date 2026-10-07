@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <link
+    rel="stylesheet"
+    href="{{url_for('static', filename='css/style.css')}}"
+  />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Checker Board</h1>
+    <div class="board">
+      {% for x in range(rows) %}
+      <div class="row">
+        {% for y in range(cols) %} {% if (x+y) %2 == 0 %}
+        <div class="block" style="background-color: black"></div>
+        {% else %}
+        <div class="block" style="background-color: red"></div>
+        {% endif %} {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
