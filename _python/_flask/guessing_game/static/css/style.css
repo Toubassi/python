@@ -1,0 +1,19 @@
+body {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  flex-direction: column;
+}
+.green {
+  background-color: #04e004;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.red {
+  background-color: red;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
