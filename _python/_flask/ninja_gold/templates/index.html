@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='CSS/style.css')}}"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ninja Gold</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="pocket">
+        <p>Your Gold: {{gold}}</p>
+      </div>
+      <div class="buildings">
+        <div class="building">
+          <h2>Farm</h2>
+          <p>earn between 10 - 20 gold</p>
+          <form action="/process_money" method="post">
+            <input type="hidden" name="building" value="farm" />
+            <input type="submit" value="Find Gold!" />
+          </form>
+        </div>
+        <div class="building">
+          <h2>Cave</h2>
+          <p>earn between 5 - 10 gold</p>
+          <form action="/process_money" method="post">
+            <input type="hidden" name="building" value="cave" />
+            <input type="submit" value="Find Gold!" />
+          </form>
+        </div>
+        <div class="building">
+          <h2>House</h2>
+          <p>earn between 2 - 5 gold</p>
+          <form action="/process_money" method="post">
+            <input type="hidden" name="building" value="house" />
+            <input type="submit" value="Find Gold!" />
+          </form>
+        </div>
+        <div class="building">
+          <h2>Casino</h2>
+          <p>Try your luck!</p>
+          <form action="/process_money" method="post">
+            <input type="hidden" name="building" value="casino" />
+            <input type="submit" value="Find Gold!" />
+          </form>
+        </div>
+      </div>
+      <div class="activities">
+        <h2>Activities:</h2>
+        <div class="activity-log">
+          {% for activity in activities %}
+          <p>{{ activity }}.</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
