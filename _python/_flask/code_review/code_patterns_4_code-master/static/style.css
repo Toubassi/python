@@ -1,0 +1,35 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.container {
+  width: 700px;
+  margin: 40px auto;
+}
+
+.menu-item {
+  background-color: white;
+  border: 1px solid #cccccc;
+  margin-bottom: 16px;
+  padding: 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+th,
+td {
+  border: 1px solid #cccccc;
+  padding: 10px;
+  text-align: left;
+}
+
+button,
+a {
+  display: inline-block;
+  margin-top: 10px;
+}

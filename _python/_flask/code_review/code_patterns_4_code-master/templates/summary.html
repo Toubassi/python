@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Summary</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Order Summary</h1>
+
+      {% if orders %}
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in orders %}
+          <tr>
+            <td>{{ order.item }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>${{ order.price }}</td>
+            <td>${{ order.price * order.quantity }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <p><strong>Total: ${{ total }}</strong></p>
+      {% else %}
+      <p>No orders have been added.</p>
+      {% endif %}
+
+      <a href="/">Add Another Item</a>
+      <form action="/clear" method="post">
+        <button type="submit">Clear All Orders</button>
+      </form>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flask Café</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Flask Café</h1>
+      <p>Choose an item and enter the quantity.</p>
+
+      <section class="menu-item">
+        <h2>Tea</h2>
+        <p>$2.00</p>
+
+        <form action="/order" method="post">
+          <input type="hidden" name="item" value="Tea" />
+          <!-- <input type="hidden" name="price" value="2" /> -->
+
+          <label>
+            Quantity:
+            <input type="number" name="quantity" value="1" min="1" />
+          </label>
+
+          <button type="submit">Add Tea</button>
+        </form>
+      </section>
+
+      <section class="menu-item">
+        <h2>Coffee</h2>
+        <p>$3.00</p>
+
+        <form action="/order" method="post">
+          <input type="hidden" name="item" value="Coffee" />
+          <!-- <input type="hidden" name="price" value="3" /> -->
+
+          <label>
+            Quantity:
+            <input type="number" name="quantity" value="1" min="1"/>
+          </label>
+
+          <button type="submit">Add Coffee</button>
+        </form>
+      </section>
+
+      <section class="menu-item">
+        <h2>Juice</h2>
+        <p>$4.00</p>
+
+        <form action="/order" method="post">
+          <input type="hidden" name="item" value="Juice" />
+          <!-- <input type="hidden" name="price" value="4" /> -->
+
+          <label>
+            Quantity:
+            <input type="number" name="quantity" value="1" min="1"/>
+          </label>
+
+          <button type="submit">Add Juice</button>
+        </form>
+      </section>
+
+      <a href="/summary">View Order Summary</a>
+    </main>
+  </body>
+</html>
