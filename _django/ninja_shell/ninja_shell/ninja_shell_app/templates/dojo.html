@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Dojo</title>
+  </head>
+  <body>
+    <h1>Create Dojo:</h1>
+    <form action="/dojo/" method="post">
+      {% csrf_token %}
+      <label for="name"
+        >Dojo name:
+        <input type="text" name="name" />
+      </label>
+      <label for="city"
+        >City:
+        <input type="text" name="city" />
+      </label>
+      <label for="state"
+        >State:
+        <input type="text" name="state" />
+      </label>
+      <input type="submit" value="Create Dojo" />
+    </form>
+    <h1>Add Ninja</h1>
+    <form action="/ninja/" method="post">
+      {% csrf_token %}
+      <label for="first_name"
+        >First Name:
+        <input type="text" name="first_name" />
+      </label>
+      <label for="last_name"
+        >Last Name:
+        <input type="text" name="last_name" />
+      </label>
+      <label for="dojo"
+        >Choose your Dojo:
+        <select name="dojo_id">
+          {% for dojo in dojos %}
+          <option value="{{dojo.id}}">{{ dojo.name}}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <input type="submit" value="Add Ninja" />
+    </form>
+    <a href="/list/">Look at all the Dojos and Ninjas</a>
+  </body>
+</html>
