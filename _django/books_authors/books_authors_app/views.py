@@ -16,8 +16,13 @@ def add_book(request):
     Book.objects.create(
       title = request.POST['title'],
       desc = request.POST['desc']
-    )
-  return redirect(request, 'add-book/')
+    ) 
+    return redirect('/add-book/')
+  books = Book.objects.all()
+  context = {
+    'books':books,
+  }
+  return render(request, 'add_book.html', context)
 
 def add_author(request):
   if request.method == 'POST':
@@ -33,6 +38,7 @@ def author_details(request, id):
   context = {
     'author' : author,
     'books': Book.objects.all(),
+    'author_books': author.books.all()
   }
   return render(request, 'authors_details.html', context=context)
 
@@ -42,7 +48,7 @@ def book_details(request, id):
     'book':book,
     'authors': Author.objects.all(),
   }
-  return render(request, 'authors_details.html', context=context)
+  return render(request, 'books_details.html', context=context)
 
 def add_book_to_author(request, id):
     if request.method == 'POST':
@@ -50,7 +56,7 @@ def add_book_to_author(request, id):
         book = Book.objects.get(id=request.POST['book_id'])
         author.books.add(book)
 
-    return redirect('/authors/<int:id>/')
+    return redirect(f'/authors/{id}/')
 
 
 def add_author_to_book(request, id):
@@ -59,4 +65,4 @@ def add_author_to_book(request, id):
         author = Author.objects.get(id=request.POST['author_id'])
         author.books.add(book)
 
-    return redirect('/books/<int:id>/')
+    return redirect(f'/books/{id}/')

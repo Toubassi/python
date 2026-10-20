@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Books</title>
@@ -13,7 +17,7 @@
 
     <h4>The Authors:</h4>
     <ul>
-      {% for book in books %}
+      {% for author in book.authors.all %}
       <li>{{author.first_name}} {{author.last_name}}</li>
       {% endfor %}
     </ul>
