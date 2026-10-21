@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Show</title>
+  </head>
+  <body>
+    <a href="/"><button>Go Home</button></a>
+    <h1>About the show:</h1>
+    <h3>Title: {{show.title}}</h3>
+    <h5>Network: {{show.network}}</h5>
+    <h5>Release Date: {{show.release_date}}</h5>
+    <h5>Description: {{show.desc}}</h5>
+
+    <a href="/shows/{{show.id}}/update/">Edit</a> |
+    <a href="/show/{{show.id}}/destroy/"> delete</a>
+  </body>
+</html>
