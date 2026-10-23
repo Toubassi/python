@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import Tv_Show
+
 # Create your views here.
 def index(request):
   shows = Tv_Show.objects.all()
@@ -11,16 +13,22 @@ def index(request):
 
 def create(request):
   if request.method == 'POST':
-    title = request.POST['title']
-    network = request.POST['network']
-    release_date = request.POST['release_date']
-    desc = request.POST['desc']
-    show= Tv_Show.objects.create(
-      title = title,
-      network = network,
-      release_date = release_date,
-      desc = desc,
-    )
+    errors = Tv_Show.objects.basic_validator(request.POST)
+    if len(errors) > 0:
+      for key, value in errors.items():
+        messages.error(request, value)
+      return redirect('/create/')
+    else:
+      title = request.POST['title']
+      network = request.POST['network']
+      release_date = request.POST['release_date']
+      desc = request.POST['desc']
+      show = Tv_Show.objects.create(
+        title = title,
+        network = network,
+        release_date = release_date,
+        desc = desc,
+      )
     return redirect(f'/shows/{show.id}/')
   show = Tv_Show.objects.all()
   context = {
@@ -43,7 +51,12 @@ def destroy(request, id):
 
 def update(request, id):
   show = Tv_Show.objects.get(id=id)
+  errors = Tv_Show.objects.basic_validator(request.POST)
   if request.method =='POST':
+    if len(errors) > 0:
+      for key, value in errors.item():
+        messages.error(request, value)
+      return redirect(f'/shows/{show.id}/update/')
     show.title = request.POST['title']
     show.network = request.POST['network']
     show.release_date = request.POST['release_date']
@@ -51,4 +64,4 @@ def update(request, id):
     show.save()
 
     return redirect(f'/shows/{show.id}/')
-  return render(request, 'update.html', {"show": show})
+  return render(request, 'update.html', {"show": show, "errors": errors})

@@ -25,5 +25,12 @@
       <input type="text" name="desc" id="desc" value="{{show.desc}}" />
       <input type="submit" value="Update" />
     </form>
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{message}}</li>
+      {% endfor %}
+    </ul>
+    {% endif%}
   </body>
 </html>
