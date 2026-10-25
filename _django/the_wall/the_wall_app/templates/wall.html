@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Wall</title>
+</head>
+<body>
+  <div class="nav">
+    <ul>
+      <li>
+        <h1>CodingDojo Wall</h1>
+      </li>
+      <li>
+        <h4>{{first_name}} {{last_name}}'s wall</h4>
+      </li>
+      <li><a href="/logout/">Log Out</a></li>
+    </ul>
+  </div>
+  <div>
+    <p>
+      <form action="/wall/post/" method="post">
+        {% csrf_token%}
+        <label for="post">What are you thinking:</label>
+        <textarea name="message" id="post" placeholder="Write your message here"></textarea>
+        <input type="submit" value="Post">
+      </form>
+    </p>
+  </div>
+  <div>
+    {% for post in posts %}
+    <div class="post" style="border: 2px solid black;"><div class="name">
+      <p>{{ post.user.first_name }} {{ post.user.last_name }} wrote:</p>
+    </div>
+      <p>{{ post.message }}</p>
+      <p>{{ post.created_at }}</p>
+      <form action="/wall/comment/{{ post.id }}/" method="post">
+        {% csrf_token %}
+        <label for="comment_{{ post.id }}">Comment:</label>
+        <textarea name="comment" id="comment_{{ post.id }}"></textarea>
+        <input type="submit" value="comment">
+      </form>
+      {% for comment in post.comments.all %}
+      <div>
+        <p>{{ comment.user.first_name }} {{ comment.user.last_name }} commented:</p>
+        <p>{{ comment.comment }}</p>
+      </div>
+      {% endfor %}
+      <p>
+        {% if first_name == post.user.first_name %}
+        <a href="/wall/edit/{{post.id}}">edit</a>
+        | <form action="/wall/delete/{{post.id}}/" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="delete" value="{{post.id}}" />
+              <button
+                type="submit"
+                value="delete"
+              >
+                delete
+              </button>
+            </form>
+        {% endif %}
+      </p>
+    </div>
+    {% endfor %}
+  </div>
+  </body>
+</html>

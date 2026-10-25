@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Post</title>
+  </head>
+  <body>
+    <form action="/wall/edit/{{ edit.id }}/" method="post">
+      {% csrf_token %}
+      <label for="edit_message">Edit post:</label>
+      <textarea name="edit_message" id="edit_message">{{edit.message}}</textarea>
+      <input type="submit" value="Edit" />
+    </form>
+  </body>
+</html>
